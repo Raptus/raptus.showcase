@@ -1,0 +1,64 @@
+
+
+ul.showcasenaviagation  {
+    display: block;
+    margin: 20pt 0;
+    padding: 0;
+}
+
+ul.showcasenaviagation li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+ul.showcasenaviagation li a {
+    padding: 0 20px 0 0;
+    border: none;
+}
+
+ul.showcasenaviagation li.selected {
+    border-bottom: 1px solid;
+}
+
+ul.showcasenaviagation {
+    margin-bottom: 13px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+ul.showcasenaviagation li a {
+    padding: 6px 13px 0 13px;
+    text-transform: uppercase;
+    display: block;
+}
+
+ul.showcasenaviagation li {
+    display: block;
+    float: left;
+}
+
+ul.showcasenaviagation li.selected {
+    border: 1px solid #e3e3e3;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
+}
+
+ul.showcasenaviagation li.selected a {
+    color: #8c8c8c;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix {display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+/* End hide from IE-mac */ 
