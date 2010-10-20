@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0b1
+-----
+
+* Plone 4 compatibility
+
 0.5a1
 -----
 
