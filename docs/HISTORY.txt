@@ -1,6 +1,15 @@
 Changelog
 =========
 
+2.0b1 (2010-09-16)
+------------------
+
+* Ready for Plone 4
+
+fix javascript problem
+fix showcase_folder_view
+
+
 1.0b1
 -----
 

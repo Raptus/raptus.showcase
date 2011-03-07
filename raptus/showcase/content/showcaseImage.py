@@ -36,9 +36,7 @@ ShowcaseImageSchema = ATImage.schema.copy() + Schema((
                                          description = _(u'The Y position in the showcase box'),
                                          )
                   ),
-    
-    
-    #TODO: Benötigt noch die standart bilder grösse als default wert
+
                   
     IntegerField ('clipWidth',
                   widget = IntegerWidget(label = _(u'clip width'),

@@ -1,8 +1,8 @@
+from zope.component import getMultiAdapter
 from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
-from raptus.showcase.interfaces import IShowcaseImage,\
-                                       IShowcase
+from raptus.showcase.interfaces import IShowcaseImage, IShowcase
 
 class ShowcaseView(BrowserView):
     """A view of a showcase object"""
@@ -106,10 +106,14 @@ class ShowcaseFolder(object):
     template = ViewPageTemplateFile('templates/showcaseFolder.pt')
     
     def __call__(self):
+        catalog = getToolByName(self.context, 'portal_catalog')
+        self._brains_showcases = catalog(object_provides=IShowcase.__identifier__,
+                                      path={'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1},
+                                      sort_on='getObjPositionInParent')
         return self.template()
     
     def navigation(self):
-        raw_showcase = self._raw_showcases()
+        raw_showcase = self._brains_showcases
         navigation = []
         number = self.selectedShowcaseNr()
         i = 0
@@ -137,21 +141,19 @@ class ShowcaseFolder(object):
         return navigation
     
     def showcase(self):
-        raw_showcase = self._raw_showcases()
-        r_showcase = None
-        number = self.selectedShowcaseNr()
-            
-        i = 0;
-        for showcase in raw_showcase:
-            if i == number:
-                r_showcase = showcase.getObject()
-                break
-            i += 1
+        """ Return the VIEW from the selected showcase
+        """
         
-        return r_showcase
+        index = self.selectedShowcaseNr()
+        brains = self._brains_showcases
+
+        if index < len(brains):
+            return getMultiAdapter((brains[index].getObject(), self.request), name='view')
+        else:
+            return None
         
     def selectedShowcaseNr(self):
-        raw_showcase = self._raw_showcases()
+        raw_showcase = self._brains_showcases
         number = 0
         if self.context.REQUEST.has_key('number'):
             try:
@@ -163,8 +165,5 @@ class ShowcaseFolder(object):
             
         return number
     
-    def _raw_showcases(self):
-        catalog = getToolByName(self.context, 'portal_catalog')
-        return catalog(object_provides=IShowcase.__identifier__, path={'query': '/'.join(self.context.getPhysicalPath()), 'depth': 1}, sort_on='getObjPositionInParent')
         
         

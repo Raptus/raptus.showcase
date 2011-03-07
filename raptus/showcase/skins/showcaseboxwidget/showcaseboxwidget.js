@@ -183,7 +183,8 @@ $wrapped_images.each(function(i) {
     }
     
     function clipping(e, way){
-        x,y = 0;
+        x = 0;
+        y = 0;
         oldX = e.pageX;
         oldY = e.pageY;
         $image = _$showcase.find('.clippingable');
@@ -265,7 +266,8 @@ $wrapped_images.each(function(i) {
     function move(e){
         $image = _$showcase.find('.moveable');
         pos = $image.position();
-        x,y = 0;
+        x = 0;
+        y = 0;
         x = e.pageX-pos.left;
         y = e.pageY-pos.top;
         jq(document).unbind('mousemove')
@@ -324,7 +326,7 @@ $wrapped_images.each(function(i) {
         i_top  = parseInt( $img.css('top') );
         i_left = parseInt( $img.css('left'));
         
-      //check is not to big or to small...      
+        //check is not to big or to small...
         if (j_height<_minSize){
             $jquery.css('height', _minSize+'px');
         }
